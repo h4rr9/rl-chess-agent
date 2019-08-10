@@ -8,6 +8,7 @@ Jinja2==2.10.1
 MarkupSafe==1.1.1
 numpy==1.17.0
 python-chess==0.28.2
+python-dotenv==0.10.3
 requests==2.22.0
 urllib3==1.25.3
 Werkzeug==0.15.5

@@ -1,1 +1,1 @@
-"a simple chess agent" 
+a simple chess agent 
