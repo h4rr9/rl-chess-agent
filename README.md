@@ -1,1 +1,3 @@
-a simple chess agent 
+a simple chess agent
+
+** work in progress **

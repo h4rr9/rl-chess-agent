@@ -22,6 +22,14 @@ class Chess:
         self.board = chess.Board(fen_string)
         self.turn = True
 
+    def key(self):
+        """function that returns state values
+
+        Returns:
+            TYPE: tuple containing important state values
+        """
+        return (self.board.board_fen(), self.board.tuen == rn, self.board.castling_rights, self.board.ep_square)
+
     def __str__(self):
         """print function
 
@@ -31,7 +39,7 @@ class Chess:
         return self.board.__str__()
 
     def __repr__(self):
-        """Summary
+        """object repr function
 
         Returns:
             TYPE: object representation of the class instance
@@ -81,9 +89,19 @@ class Chess:
         return 'White' if self.turn else 'Black'
 
     def game_over(self):
+        """function that returns game over status
+
+        Returns:
+            TYPE: boolean denoting the game over status
+        """
         return self.board.is_game_over()
 
     def get_result(self):
+        """function to return result of game
+
+        Returns:
+            TYPE: string values containting result of the game
+        """
         if self.game_over():
             if self.board.is_checkmate():
                 return self.get_turn()

@@ -12,6 +12,14 @@ def start():
     return f'<html><body><center>{game.get_image()}<form action="/move" method="post"><input type="text" name="move"> </input><input type="submit" value="Move"></input></form></center></body></html>'
 
 
+@app.route('/setup', methods=['POST'])
+def start_pos():
+    print(request.get_data())
+    fen_string = request.form['fen']
+    game = Chess(fen_string=fen_string)
+    return f'<html><body><center>{game.get_image()}<form action="/move" method="post"><input type="text" name="move"> </input><input type="submit" value="Move"></input></form></center></body></html>'
+
+
 @app.route('/move', methods=['POST'])
 def move():
     move = request.form['move']
