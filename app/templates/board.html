@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div id="main-body">
+            {{ image }}
+            <form action="/move" method="post">
+                <input type="text" name="move"></input>
+                <input type="submit" value="Move"></input>
+            </form>
+            {{ message }}
+            {% for move in moves %}
+            {% if move|length == 2%}
+                <li>{{move[0]}} - {{move[1]}}</li>
+            {% else %}
+                <li>{{move[0]}}</li>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </body>
+</html>

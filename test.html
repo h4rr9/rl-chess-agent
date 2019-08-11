@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="main-body">
+        {% for move in moves %}
+        {% if move|length == 2%}
+            <li>{{move[0]}} - {{move[1]}}</li>
+        {% else %}
+            <li>{{move[0]}}</li>
+        {% endfor %}
+        </div>
+    </body>
+</html>

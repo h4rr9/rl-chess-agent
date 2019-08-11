@@ -1,7 +1,7 @@
 """Chess engine object
 """
 import chess
-import chess.svg as render
+import chess.svg
 
 
 class Chess:
@@ -13,14 +13,16 @@ class Chess:
         turn (bool): boolean value denoting player turn
     """
 
-    def __init__(self, fen_string=chess.STARTING_FEN):
+    def __init__(self, fen_string=chess.STARTING_FEN, turn=True):
         """init function
 
         Args:
             fen_string (TYPE, optional): FEN representation of board state
         """
         self.board = chess.Board(fen_string)
-        self.turn = True
+        self.turn = turn
+        self.last_move = None
+        self.moves = []
 
     def key(self):
         """function that returns state values
@@ -75,8 +77,9 @@ class Chess:
             error: illegal move error
         """
         if self.is_legal(move):
-            self.board.push_san(move)
+            self.last_move = self.board.push_san(move)
             self.turn = not self.turn
+            self.moves.append(move)
         else:
             raise Exception('IllegalMove')
 
@@ -112,6 +115,10 @@ class Chess:
         """resets board
         """
         self.board.reset()
+        self.moves = []
+
+    def get_last_move(self):
+        return self.last_move
 
     def get_image(self, size=400):
         """function to return svg of game
@@ -122,4 +129,4 @@ class Chess:
         Returns:
             TYPE: svg string
         """
-        return str(render.board(board=self.board, size=size))
+        return chess.svg.board(board=self.board, size=size, lastmove=self.last_move)
